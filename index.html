@@ -8,7 +8,6 @@
   :root{
     --bg:#0b0d14;
     --card:#171b2a;
-    --card2:#1d2233;
     --line:#2a3148;
     --text:#eef2ff;
     --sub:#9aa7c4;
@@ -17,20 +16,12 @@
     --green-d:#16a34a;
     --red:#ef4444;
     --radius:14px;
-    --shadow:0 10px 30px rgba(0,0,0,.45);
   }
   *{box-sizing:border-box}
   html,body{margin:0;padding:0}
   body{
     font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
-    background:
-      radial-gradient(circle at 18% 12%, #141a2e 0 2px, transparent 2px),
-      radial-gradient(circle at 82% 88%, #1a1433 0 2px, transparent 2px),
-      radial-gradient(circle at 50% 100%, #141a33 0 6px, transparent 6px);
-    background-size:100% 40px, 100% 40px, 100% 6px;
-    color:var(--text);
-    min-height:100vh;
-    -webkit-font-smoothing:antialiased;
+    background:var(--bg);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased;
   }
   .app{max-width:640px;margin:0 auto;padding:20px 16px 48px}
   header.top{
@@ -39,110 +30,87 @@
   }
   h1.logo{font-size:22px;letter-spacing:.5px;color:var(--lime);margin:0;font-weight:800}
   h1.logo span{color:var(--text);font-weight:600}
-  .mini{font-size:12px;color:var(--sub);letter-spacing:.4px;text-transform:uppercase}
-
+  .btn{
+    padding:10px 14px;border-radius:10px;border:none;font-size:14px;font-weight:700;cursor:pointer;transition:.15s;
+  }
+  .btn-ghost{background:transparent;color:var(--sub);border:1px solid var(--line)}
+  .btn-ghost:hover{background:var(--bg2);color:var(--text)}
+  .btn-ghost.danger:hover{color:var(--red);border-color:var(--red);background:rgba(239,68,68,.10)}
   .view{display:none}
   .view.active{display:block}
-
-  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow)}
-  .card h2{font-size:18px;margin:0 0 6px;color:var(--text)}
-  .card .sub{color:var(--sub);font-size:13px;margin:0 0 14px}
-
-  label.fld{display:block;font-size:13px;color:var(--sub);margin-bottom:8px}
-  input.text, textarea{
-    width:100%;margin-top:6px;padding:11px 12px;border-radius:10px;
-    border:1px solid var(--line);background:var(--bg2);color:var(--text);font-size:15px;
-    font-family:inherit;resize:vertical;outline:none;transition:border .15s
-  }
-  input.text:focus, textarea:focus{border-color:var(--lime)}
-  textarea{min-height:64px}
-
-  .qrow{display:grid;grid-template-columns:28px 1fr auto;gap:8px;align-items:center;margin:12px 0}
-  .qrow+.qrow{margin-top:10px}
-  .qrow input.text{margin-top:0;width:100%;padding:10px 12px}
-  .qrow .hint{font-size:11px;color:var(--sub);grid-column:1/-1}
-  .qblock{display:grid;grid-template-columns:auto 1fr;gap:6px;align-items:center;margin:12px 0 0 0;padding:10px 12px;border-radius:10px;background:var(--bg2);border:1px solid var(--line);font-family:inherit}
-  .qblock .qk{font-size:12px;color:var(--sub);font-weight:600;letter-spacing:.3px}
-  .qblock input.text{width:100%;margin-top:0}
-  .row-actions{display:flex;gap:8px;align-items:center}
-  .row-actions button{
-    padding:8px 12px;border-radius:10px;border:1px solid var(--line);background:var(--bg2);
-    color:var(--sub);font-size:13px;cursor:pointer;transition:.15s
-  }
-  .row-actions button:hover{color:var(--text);border-color:var(--line)}
-  .row-actions button.danger:hover{border-color:var(--red);color:var(--red)}
-
-  input.correct{
-    width:20px;height:20px;accent-color:var(--green);
-    cursor:pointer;flex-shrink:0
-  }
-  .btn{
-    padding:11px 16px;border-radius:10px;border:none;font-size:14px;font-weight:700;
-    cursor:pointer;transition:.15s
-  }
-  .btn-primary{background:var(--lime);color:#0b0d14}
-  .btn-primary:hover{filter:brightness(1.08)}
-  .btn-ghost{background:transparent;color:var(--text);border:1px solid var(--line)}
-  .btn-ghost:hover{background:var(--bg2)}
-  .btn:disabled{opacity:.4;cursor:not-allowed}
-  .btn-row{display:flex;gap:8px;margin-top:14px}
-  .btn-row .btn{flex:1}
-
-  .choices-list{display:grid;grid-template-columns:24px 1fr auto;gap:6px;align-items:center}
-  .choice{
-    display:grid;grid-template-columns:22px 1fr auto;gap:8px;align-items:center;
-    padding:9px 12px;border-radius:10px;border:1px solid var(--line);background:var(--bg2);font-size:14px
-  }
-  .choice input.correct{width:18px;height:18px;accent-color:var(--green);cursor:pointer}
-  .choice .rm{
-    border:none;background:transparent;color:var(--sub);cursor:pointer;padding:4px;margin-left:4px;
-    border-radius:6px;transition:.15s
-  }
-  .choice .rm:hover{color:var(--red);background:rgba(239,68,68,.12)}
-  .choice .hint{font-size:11px;color:var(--sub);grid-column:1/-1}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:14px;box-shadow:0 6px 18px rgba(0,0,0,.35)}
+  .card h2{font-size:18px;margin:0 0 4px;color:var(--text)}
+  .card .sub{color:var(--sub);font-size:13px;margin:0 0 10px}
 
   .quiz-title{
-    font-size:15px;color:var(--sub);background:none;border:none;cursor:pointer;padding:4px 8px;border-radius:6px
+    font-size:15px;color:var(--text);background:none;border:none;cursor:pointer;padding:4px 8px;border-radius:6px;
   }
   .quiz-title:hover{background:var(--bg2)}
 
-  .quiz-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow);max-width:560px;margin:0 auto}
-  .quiz-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+  .qblock{
+    border:1px solid var(--line);border-radius:12px;padding:12px;margin-bottom:12px;background:var(--bg2);
+  }
+  .qnum{font-size:12px;color:var(--sub);letter-spacing:.3px;font-weight:700}
+  .qtext{
+    width:100%;margin-top:6px;padding:11px 12px;border-radius:10px;border:1px solid var(--line);background:var(--bg2);
+    color:var(--text);font-size:15px;font-family:inherit;resize:vertical;outline:none;transition:border .15s;
+  }
+  .qtext:focus{border-color:var(--lime)}
+
+  .choice{
+    display:grid;grid-template-columns:1fr auto auto;gap:8px;align-items:center;padding:8px 10px;border-radius:10px;
+    border:1px solid var(--line);background:var(--bg2);font-size:14px;margin-bottom:6px;
+  }
+  .choice input.text{flex:1;margin-top:0;padding:8px 10px}
+  .choice .correct-toggle{
+    font-size:12px;font-weight:800;padding:6px 10px;border-radius:999px;border:1px solid var(--line);
+    background:var(--bg2);color:var(--sub);cursor:pointer;white-space:nowrap;transition:.15s;
+  }
+  .choice .correct-toggle.on{background:var(--green);color:#0b0d14;border-color:var(--green);}
+  .choice .rm{
+    border:none;background:transparent;color:var(--sub);cursor:pointer;padding:4px;border-radius:6px;transition:.15s;font-size:14px;
+  }
+  .choice .rm:hover{color:var(--red);background:rgba(239,68,68,.12)}
+  .choice .hint{font-size:11px;color:var(--sub);margin-top:4px}
+
+  .add-row{display:flex;justify-content:flex-start;margin-top:4px}
+  .add-row .btn{flex:1}
+  .btn-row{display:flex;gap:8px;margin-top:14px}
+  .btn-row .btn{flex:1}
+
+  .msg{font-size:13px;color:var(--red);margin-top:10px;text-align:center;display:none}
+  .msg.show{display:block}
+
+  .quiz-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px;box-shadow:0 6px 18px rgba(0,0,0,.35)}
+  .quiz-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
   .progress{font-size:13px;color:var(--sub);letter-spacing:.3px}
   .qtext{font-size:21px;font-weight:800;line-height:1.4;margin:0 0 18px;color:var(--text);text-align:center}
 
   .answers{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
   .ans{
-    padding:12px 14px;border-radius:10px;text-align:left;font-size:14px;
-    border:1px solid var(--line);background:var(--bg2);transition:.15s
+    padding:12px 14px;border-radius:10px;text-align:left;font-size:14px;cursor:pointer;
+    border:1px solid var(--line);background:var(--bg2);transition:.15s;
   }
+  .ans.select{border-color:var(--green);background:#16241a}
   .ans.wrong{background:#16241a;border-color:var(--green);color:var(--green)}
-  .ans.wrong .mark{display:inline-block;background:var(--green);color:#0b0d14;font-size:11px;font-weight:800;
-    padding:2px 7px;border-radius:999px;vertical-align:middle;margin-right:8px}
-  .ans.correct{background:#16241a;border-color:var(--lime)}
+  .ans.wrong .mark{background:var(--green);color:#0b0d14;font-size:11px;font-weight:800;padding:2px 7px;border-radius:999px}
   .ans .letter{font-size:12px;font-weight:800;color:var(--sub);display:block;margin-bottom:2px}
   .ans .txt{font-weight:600}
   .ans .mark{vertical-align:middle}
 
   .reveal-row{display:flex;gap:8px;margin-top:18px}
   .reveal-row .btn{flex:1}
-  .msg{font-size:13px;color:var(--sub);margin-top:12px;text-align:center}
-
-  .empty{color:var(--sub);text-align:center;padding:24px 8px}
-  .footer{display:flex;gap:8px;margin-top:18px}
-  .footer .btn{flex:1}
-
   .toast{
     position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(80px);
     background:#16241a;border:1px solid var(--green);color:var(--green);
-    padding:12px 20px;border-radius:10px;font-size:14px;opacity:0;transition:.3s;
-    pointer-events:none;z-index:50
+    padding:12px 20px;border-radius:10px;font-size:14px;opacity:0;transition:.3s;pointer-events:none;z-index:50;
   }
   .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
   @media (max-width:480px){
-    .qrow{grid-template-columns:24px 1fr auto;gap:6px}
-    .qtext{font-size:18px}
+    .choice{grid-template-columns:1fr auto;}
+    .choice .rm{display:none;}
+    .qtext{font-size:16px}
   }
 </style>
 </head>
@@ -150,19 +118,18 @@
 <div class="app">
   <header class="top">
     <h1><span class="logo">Q</span>UIZ<span class="logo">TIME</span></h1>
-    <button class="btn btn-ghost" id="resetAll" style="padding:6px 10px;font-size:12px">Reset</button>
+    <button class="btn btn-ghost" id="resetAll" style="padding:6px 10px;font-size:12px" title="Delete all quizzes">Clear all quizzes</button>
   </header>
 
-  <!-- EDIT VIEW -->
   <section id="edit-view" class="view active">
     <div id="quizList"></div>
     <div class="btn-row">
       <button class="btn btn-primary" id="addQuiz">+ Add quiz</button>
       <button class="btn btn-ghost" id="startBtn" disabled>Start quiz</button>
     </div>
+    <div class="msg" id="msg"></div>
   </section>
 
-  <!-- QUIZ VIEW -->
   <section id="quiz-view" class="view">
     <div class="quiz-card">
       <div class="quiz-head">
@@ -175,7 +142,6 @@
         <button class="btn btn-primary" id="checkBtn">Check answer</button>
         <button class="btn btn-ghost" id="nextBtn" disabled>Next →</button>
       </div>
-      <div class="msg" id="msg"></div>
     </div>
   </section>
 </div>
@@ -188,14 +154,38 @@
   var SAMPLE = {
     title: "Astronomy Quick",
     questions: [
-      { text: "What is the closest star to Planet Earth?", choices: ["Proxima Centauri","The Sun","Alpha Centauri","Sirius"], correct: 1 }
+      { text: "What is the closest star to Planet Earth?", choices: [
+          { text: "Proxima Centauri", correct: false },
+          { text: "The Sun", correct: true },
+          { text: "Alpha Centauri", correct: false },
+          { text: "Sirius", correct: false }
+        ]
+      }
     ]
   };
 
   var store = {
     load: function(){
-      try{ var raw = localStorage.getItem(STORAGE_KEY); var t = JSON.parse(raw); return (t && Array.isArray(t)) ? t : []; }
-      catch(e){ return []; }
+      try{
+        var raw = localStorage.getItem(STORAGE_KEY);
+        var t = JSON.parse(raw);
+        if(!t || !Array.isArray(t)) return [];
+        return t.map(function(qz){
+          var questions = (qz.questions||[]).map(function(q){
+            if(!q || typeof q !== 'object') return q;
+            var choices = (q.choices||[]).map(function(c){
+              if(typeof c === 'string') return { text: c, correct: false };
+              return c;
+            });
+            var ci = q.correct;
+            if(typeof ci === 'number' && ci >= 0 && ci < choices.length){
+              choices[ci] = Object.assign({}, choices[ci], { correct: true });
+            }
+            return { text: q.text || "", choices: choices };
+          });
+          return { title: qz.title || "Untitled", questions: questions };
+        });
+      }catch(e){ return []; }
     },
     save: function(list){
       try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(list)); toast("Saved"); }
@@ -212,7 +202,6 @@
   };
 
   function $(id){ return document.getElementById(id); }
-  function uid(){ return Date.now().toString(36) + Math.random().toString(36).slice(2,7); }
   function toast(msg){
     var t = $("toast");
     t.textContent = msg;
@@ -220,23 +209,15 @@
     clearTimeout(t._timer);
     t._timer = setTimeout(function(){ t.classList.remove("show"); }, 1600);
   }
-
   function currentQuiz(){ return state.quizzes[state.editIndex]; }
 
-  function checkQuiz(qz){
-    var probs = [];
-    (qz.questions||[]).forEach(function(q, i){
-      if(!q.text.trim()) probs.push("Question " + (i+1) + " needs a question.");
-      if(!(q.choices||[]).length) probs.push("Question " + (i+1) + " needs at least 2 choices.");
-      else if((q.choices||[]).length < 2) probs.push("Question " + (i+1) + " needs at least 2 choices.");
-      var c = (q.choices||[]).filter(function(x, idx){ return q.correct === idx; }).length;
-      if(c === 0) probs.push("Question " + (i+1) + " needs one answer marked as correct.");
-      else if(c > 1) probs.push("Question " + (i+1) + " has more than one correct answer.");
+  function quizComplete(qz){
+    return (qz.questions||[]).some(function(q){
+      return q.text.trim() && (q.choices||[]).length >= 2 && (q.choices||[]).filter(function(c){ return c.correct; }).length === 1;
     });
-    return { valid: probs.length === 0, problems: probs };
   }
 
-  function saveAndUpdate(){ store.save(state.quizzes); renderEdit(); updateStartButton(); }
+  function saveAndUpdate(){ store.save(state.quizzes); renderEdit(); updateStart(); }
 
   // ---------------- EDIT VIEW ----------------
   function renderEdit(){
@@ -244,98 +225,110 @@
     if(state.quizzes.length === 0){
       box.innerHTML = '<div class="empty">No quizzes yet. Add one below.</div>';
       $("startBtn").disabled = true;
+      $("msg").classList.remove("show");
       return;
     }
     box.innerHTML = "";
     state.quizzes.forEach(function(qz, qi){
       var card = document.createElement("div");
       card.className = "card";
-      card.style.marginBottom = "16px";
+      card.style.marginBottom = "14px";
 
       var title = document.createElement("input");
       title.className = "quiz-title";
-      title.placeholder = "Quiz title (e.g. Daily Quiz #2)";
+      title.placeholder = "Quiz title";
       title.value = qz.title || "";
       title.addEventListener("input", function(){ qz.title = title.value; saveAndUpdate(); });
-
-      var list = document.createElement("div");
-      list.className = "choices-list";
-      list.style.marginBottom = "12px";
 
       (qz.questions||[]).forEach(function(q, qi2){
         var qblock = document.createElement("div");
         qblock.className = "qblock";
+
         var qk = document.createElement("div");
-        qk.className = "qk";
+        qk.className = "qnum";
         qk.textContent = "Question " + (qi2+1);
+
         var qtext = document.createElement("input");
-        qtext.className = "text";
-        qtext.placeholder = "Enter the question";
+        qtext.className = "qtext";
+        qtext.placeholder = "Type the question";
         qtext.value = q.text || "";
         qtext.addEventListener("input", function(){ q.text = qtext.value; saveAndUpdate(); });
+
         qblock.appendChild(qk);
         qblock.appendChild(qtext);
-        list.appendChild(qblock);
 
-        (q.choices||[]).forEach(function(choice, ci){
-          var cradio = document.createElement("input");
-          cradio.type = "radio";
-          cradio.name = "correct_" + qi2;
-          cradio.className = "correct";
-          cradio.checked = q.correct === ci;
-          cradio.addEventListener("change", function(){
-            qz.questions.forEach(function(x){ x.correct = -1; });
-            q.correct = ci;
-            saveAndUpdate();
-          });
+        (q.choices||[]).forEach(function(c, ci){
+          var choice = document.createElement("div");
+          choice.className = "choice";
+          choice.dataset.index = ci;
+
           var ctext = document.createElement("input");
           ctext.className = "text";
           ctext.placeholder = "Choice " + (ci+1);
-          ctext.value = choice || "";
-          ctext.addEventListener("input", function(){ q.choices[ci] = ctext.value; saveAndUpdate(); });
-          var crm = document.createElement("button");
-          crm.className = "rm";
-          crm.innerHTML = "✕";
-          crm.title = "Remove choice";
-          crm.addEventListener("click", function(){
+          ctext.value = c.text || "";
+          ctext.addEventListener("input", function(){ c.text = ctext.value; saveAndUpdate(); });
+
+          var tog = document.createElement("button");
+          tog.className = "correct-toggle" + (c.correct ? " on" : "");
+          tog.textContent = c.correct ? "✓ Correct" : "Mark as correct";
+          tog.addEventListener("click", function(){
+            q.choices.forEach(function(x){ x.correct = false; });
+            c.correct = true;
+            saveAndUpdate();
+          });
+
+          var rm = document.createElement("button");
+          rm.className = "rm";
+          rm.innerHTML = "✕";
+          rm.title = "Remove choice";
+          rm.addEventListener("click", function(){
             q.choices.splice(ci, 1);
-            if(q.correct === ci) q.correct = -1;
             saveAndUpdate();
             renderEdit();
           });
-          var chint = document.createElement("div");
-          chint.className = "hint";
-          chint.textContent = q.correct === ci ? "✓ This is the correct answer" : "Mark this as the correct answer";
-          var crow = document.createElement("div");
-          crow.className = "choice";
-          crow.appendChild(cradio);
-          crow.appendChild(ctext);
-          crow.appendChild(crm);
-          crow.appendChild(chint);
-          list.appendChild(crow);
+
+          choice.appendChild(ctext);
+          choice.appendChild(tog);
+          choice.appendChild(rm);
+          qblock.appendChild(choice);
         });
 
         var addChoice = document.createElement("button");
         addChoice.className = "btn btn-ghost";
         addChoice.style.width = "100%";
-        addChoice.style.padding = "8px";
+        addChoice.style.padding = "6px";
         addChoice.textContent = "+ Add choice";
         addChoice.addEventListener("click", function(){
           if(!qz.questions[qi2].choices) qz.questions[qi2].choices = [];
-          qz.questions[qi2].choices.push("");
+          qz.questions[qi2].choices.push({ text: "", correct: false });
           saveAndUpdate();
           renderEdit();
         });
-        list.appendChild(addChoice);
+
+        var rmQ = document.createElement("button");
+        rmQ.className = "rm";
+        rmQ.style.width = "100%";
+        rmQ.style.padding = "6px";
+        rmQ.innerHTML = "Remove question";
+        rmQ.title = "Remove this question";
+        rmQ.addEventListener("click", function(){
+          qz.questions.splice(qi2, 1);
+          saveAndUpdate();
+          renderEdit();
+        });
+
+        qblock.appendChild(addChoice);
+        qblock.appendChild(rmQ);
+        card.appendChild(qblock);
       });
 
       var addQ = document.createElement("button");
       addQ.className = "btn btn-ghost";
       addQ.style.width = "100%";
-      addQ.style.padding = "8px";
+      addQ.style.padding = "6px";
       addQ.textContent = "+ Add question";
       addQ.addEventListener("click", function(){
-        qz.questions.push({ text: "", choices: ["", ""], correct: -1 });
+        qz.questions.push({ text: "", choices: [{ text: "", correct: false }] });
         saveAndUpdate();
         renderEdit();
       });
@@ -343,39 +336,45 @@
       var rmQuiz = document.createElement("button");
       rmQuiz.className = "rm";
       rmQuiz.style.width = "100%";
-      rmQuiz.style.padding = "8px";
+      rmQuiz.style.padding = "6px";
       rmQuiz.innerHTML = "Delete this quiz";
+      rmQuiz.title = "Delete this quiz";
       rmQuiz.addEventListener("click", function(){
+        if(state.quizzes.length > 1 && !confirm("Delete this quiz? This can't be undone.")) return;
+        if(state.quizzes.length === 1 && !confirm("Delete this quiz? This can't be undone.")) return;
         state.quizzes.splice(qi, 1);
-        if(state.editIndex === qi) state.editIndex = -1;
+        if(state.editIndex === qi) state.editIndex = state.quizzes.length - 1;
         saveAndUpdate();
         renderEdit();
       });
 
       card.appendChild(title);
-      card.appendChild(list);
       card.appendChild(addQ);
       card.appendChild(rmQuiz);
       box.appendChild(card);
     });
-    updateStartButton();
+    updateStart();
   }
 
-  function updateStartButton(){
-    var enabled = state.quizzes.some(function(qz){
-      return (qz.questions||[]).some(function(q){
-        return q.text.trim() && (q.choices||[]).length >= 2 && q.correct >= 0;
-      });
-    });
+  function updateStart(){
+    var msg = $("msg");
+    var enabled = quizComplete(state.quizzes[state.editIndex]);
     $("startBtn").disabled = !enabled;
+    msg.classList.remove("show");
+    if(state.quizzes.length === 0){
+      msg.textContent = "Add a quiz first.";
+      msg.classList.add("show");
+    } else if(!enabled){
+      msg.textContent = "A complete question needs: a question, at least 2 choices, and one marked as correct.";
+      msg.classList.add("show");
+    }
   }
 
   // ---------------- QUIZ VIEW ----------------
   function startQuiz(){
     var qz = currentQuiz();
-    var r = checkQuiz(qz);
-    if(!r.valid){
-      toast(r.problems.join(" "));
+    if(!quizComplete(qz)){
+      toast("Add a question, at least 2 choices, and mark one as correct first.");
       return;
     }
     state.qn = 0;
@@ -409,41 +408,29 @@
     var wrap = $("answers");
     wrap.innerHTML = "";
     state.results = state.results || [];
-    var rec = state.results[state.qn] || { selected: null, correct: null };
-    state.selected = rec.selected;
+    var rec = state.results[state.qn];
+    state.selected = rec ? rec.selected : null;
+    var correctIndex = qs[state.qn].choices.findIndex(function(c){ return c.correct; });
+    var hasChecked = rec !== undefined && rec.correct !== null;
 
-    qs[state.qn].choices.forEach(function(choice, ci){
+    qs[state.qn].choices.forEach(function(c, ci){
       var div = document.createElement("div");
       div.className = "ans";
       div.addEventListener("click", function(){ state.selected = ci; });
-      if(ci === rec.correct) div.classList.add("correct");
-      else if(rec.correct !== null && ci !== rec.correct) div.classList.add("wrong");
 
-      var label = document.createElement("label");
+      if(state.selected !== null) div.classList.add("select");
 
-      var letter = document.createElement("span");
-      letter.className = "letter";
-      letter.textContent = String.fromCharCode(65 + ci);
-
-      var txt = document.createElement("span");
-      txt.className = "txt";
-      if(rec.correct !== null && ci === rec.correct) txt.innerHTML = "✓ " + choice;
-      else if(rec.selected !== null && rec.correct !== null && ci === rec.selected && ci !== rec.correct){
-        txt.innerHTML = "✗ " + choice;
+      if(hasChecked){
+        if(ci === correctIndex){
+          div.classList.add("correct");
+          div.innerHTML = '<span class="letter">' + String.fromCharCode(65 + ci) + '</span><span class="txt">✓ ' + c.text + '</span><span class="mark">correct</span>';
+        } else {
+          div.classList.add("wrong");
+          div.innerHTML = '<span class="letter">' + String.fromCharCode(65 + ci) + '</span><span class="txt">✗ ' + c.text + '</span><span class="mark">' + (state.selected === ci ? "your pick" : "not the answer") + '</span>';
+        }
       } else {
-        txt.textContent = choice;
+        div.innerHTML = '<span class="letter">' + String.fromCharCode(65 + ci) + '</span><span class="txt">' + c.text + '</span><span class="mark"></span>';
       }
-
-      var mark = document.createElement("span");
-      mark.className = "mark";
-      if(rec.correct !== null && ci === rec.correct) mark.textContent = "correct";
-      else if(rec.selected !== null && rec.correct !== null && ci === rec.selected) mark.textContent = "your pick";
-      else mark.textContent = "";
-
-      label.appendChild(letter);
-      label.appendChild(txt);
-      label.appendChild(mark);
-      div.appendChild(label);
       wrap.appendChild(div);
     });
 
@@ -457,15 +444,14 @@
     var qz = currentQuiz();
     var qs = qz.questions;
     var chosen = state.selected;
-    var correct = qs[state.qn].correct;
+    var correctIndex = qs[state.qn].choices.findIndex(function(c){ return c.correct; });
 
     if(chosen === null){
       toast("Pick an answer first.");
       return;
     }
     if(state.results[state.qn]){ toast("Already checked this one."); return; }
-
-    state.results[state.qn] = { selected: chosen, correct: correct };
+    state.results[state.qn] = { selected: chosen, correct: correctIndex };
     showQuestion();
     if(state.qn === qs.length - 1){
       $("nextBtn").textContent = "Finish";
@@ -493,12 +479,12 @@
 
   // ---------------- Actions ----------------
   function addQuiz(){
-    state.quizzes.push({ title: "New quiz", questions: [{ text: "", choices: ["", ""], correct: -1 }] });
+    state.quizzes.push({ title: "New quiz", questions: [{ text: "", choices: [{ text: "", correct: false }] }] });
     state.editIndex = state.quizzes.length - 1;
     saveAndUpdate();
     renderEdit();
     var cards = $("quizList").children;
-    if(cards.length) cards[cards.length-1].querySelector("input.text").focus();
+    if(cards.length) cards[cards.length-1].querySelector("input.qtext").focus();
   }
 
   function resetAll(){
@@ -508,7 +494,7 @@
     state.editIndex = -1;
     store.save(state.quizzes);
     renderEdit();
-    updateStartButton();
+    $("msg").classList.remove("show");
     toast("Removed all quizzes");
   }
 
@@ -519,7 +505,6 @@
     }
     state.editIndex = 0;
     renderEdit();
-    updateStartButton();
     $("addQuiz").onclick = addQuiz;
     $("startBtn").onclick = startQuiz;
     $("resetAll").onclick = resetAll;
